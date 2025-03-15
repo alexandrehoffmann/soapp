@@ -1,0 +1,7 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+includedir=${prefix}/include
+
+Name: sopp
+Description: A small header-only library
+Version: 1.0.0
+Cflags: -I${includedir}
