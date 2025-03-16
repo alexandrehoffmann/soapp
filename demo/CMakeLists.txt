@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(sopp_demo LANGUAGES CXX)
+project(soapp_demo LANGUAGES CXX)
 
 add_executable(demo_tuple demo_tuple.cpp)
 add_executable(demo_array demo_array.cpp)
 
-# Link the sopp library
-target_link_libraries(demo_tuple PRIVATE sopp)
-target_link_libraries(demo_array PRIVATE sopp)
+# Link the soapp library
+target_link_libraries(demo_tuple PRIVATE soapp)
+target_link_libraries(demo_array PRIVATE soapp)
 
 # Specify include directories
 target_include_directories(demo_tuple PRIVATE . ${CMAKE_SOURCE_DIR}/include)
