@@ -15,7 +15,7 @@ class tuple
 	using value_type = FirstItem;
 	using rest_type  = tuple<OtherItems...>;
 public:
-	static tuple_index< number_of_items<FirstItem, OtherItems...>::value > integral_size;
+	static tuple_index< number_of_items<FirstItem, OtherItems...>::value > ic_size;
 
 	tuple() = default;
 	tuple(const FirstItem&  value, const OtherItems&...  rest) : m_value(value), m_rest(rest...) {}
@@ -48,7 +48,7 @@ class tuple<Item>
 {
 	using value_type = Item;
 public:
-	static tuple_index<1> integral_size;
+	static tuple_index<1> ic_size;
 
 	tuple(const Item&  value) : m_value(value) {}
 	

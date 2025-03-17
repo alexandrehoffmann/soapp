@@ -21,7 +21,7 @@ int main()
 We provide a simple interface to iterate through our tuple:
 ```cpp
   // you can iterate through the items of a tuple
-  soapp::static_for(person.integral_size, [&person](const auto i) -> void
+  soapp::static_for(person.ic_size, [&person](const auto i) -> void
   {
     std::cout << person[i] << " ";
   });

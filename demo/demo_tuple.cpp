@@ -18,7 +18,7 @@ int main()
 	soapp::tuple<std::string, std::string, int, Gender> person("Lucas", "Bennett", 29, Gender::MALE);
 
 	// you can iterate through the items of a tuple
-	soapp::static_for(person.integral_size, [&person](const auto i) -> void
+	soapp::static_for(person.ic_size, [&person](const auto i) -> void
 	{
 		std::cout << person[i] << " ";
 	});
@@ -39,7 +39,7 @@ int main()
 	// and via the [] operator 
 	person[soapp::tuple_index<PersonAttribute::LAST_NAME>{}] = "Monroe";
 	
-	soapp::static_for(person.integral_size, [&person](const auto i) -> void
+	soapp::static_for(person.ic_size, [&person](const auto i) -> void
 	{
 		std::cout << person[i] << " ";
 	});

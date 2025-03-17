@@ -10,7 +10,7 @@ namespace soapp
 template<bool is_const, typename... Items>
 void zip_iterator<is_const, Items...>::advance()
 { 
-	static_for(m_core.integral_size, [this](const auto i) 
+	static_for(m_core.ic_size, [this](const auto i) 
 	{
 		++m_core[i];
 	});
@@ -19,7 +19,7 @@ void zip_iterator<is_const, Items...>::advance()
 template<bool is_const, typename... Items>
 void zip_iterator<is_const, Items...>::step_back()
 {
-	static_for(m_core.integral_size, [this](const auto i) 
+	static_for(m_core.ic_size, [this](const auto i) 
 	{
 		--m_core[i];
 	});
@@ -28,7 +28,7 @@ void zip_iterator<is_const, Items...>::step_back()
 template<bool is_const, typename... Items>
 void zip_iterator<is_const, Items...>::advance(const difference_type diff)
 {
-	static_for(m_core.integral_size, [this, &diff](const auto i) 
+	static_for(m_core.ic_size, [this, &diff](const auto i) 
 	{
 		m_core[i] += diff;
 	});
@@ -37,7 +37,7 @@ void zip_iterator<is_const, Items...>::advance(const difference_type diff)
 template<bool is_const, typename... Items>
 void zip_iterator<is_const, Items...>::step_back(const difference_type diff)
 {
-	static_for(m_core.integral_size, [this, &diff](const auto i) 
+	static_for(m_core.ic_size, [this, &diff](const auto i) 
 	{
 		m_core[i] -= diff;
 	});	

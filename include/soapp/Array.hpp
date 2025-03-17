@@ -32,7 +32,17 @@ public:
 	      reference operator[] (const size_t i)       { return random_access_impl(i, make_tuple_index_seq<nElem-1>{}); }
 	const_reference operator[] (const size_t i) const { return random_access_impl(i, tuple_index_seq<nElem-1>{}); }
 	
-	size_t size() const { return m_values.size(); }
+	bool   empty()         const { return m_values.empty(); }
+	size_t size()          const { return m_values.size();  }
+	size_t max_size()      const { return m_values.size();  }
+	void   reserve()       const { m_values.reserve(); m_rest.reserve(); }
+	void   capacity()      const { m_values.capacity(); }
+	void   shrink_to_fit() const { m_values.shrink_to_fit(); m_rest.shrink_to_fit(); }
+	
+	void clear() { m_values.clear(); m_rest.clear(); }
+	
+	void push_back(const FirstItem& firstItem, const OtherItems&... otherItems) { m_values.push_back(firstItem); m_rest.push_back(otherItems...); }
+	void push_back(FirstItem&& firstItem, OtherItems&&... otherItems)           { m_values.push_back(std::forward<FirstItem>(firstItem)); m_rest.push_back(std::forward<OtherItems>(otherItems)...); }
 	
 	              iterator   begin()       { return   begin_impl(make_tuple_index_seq<nElem>{}); }
 	        const_iterator   begin() const { return   begin_impl(make_tuple_index_seq<nElem>{}); }
@@ -75,9 +85,6 @@ public:
 	template<size_t I>       reverse_nth_iterator_t<I, FirstItem, OtherItems...> nth_rend();
 	template<size_t I> const_reverse_nth_iterator_t<I, FirstItem, OtherItems...> nth_rend()  const;
 	template<size_t I> const_reverse_nth_iterator_t<I, FirstItem, OtherItems...> nth_crend() const;	
-		
-	void push_back(const FirstItem& firstItem, const OtherItems&... otherItems) { m_values.push_back(firstItem); m_rest.push_back(otherItems...); }
-	void push_back(FirstItem&& firstItem, OtherItems&&... otherItems)           { m_values.push_back(std::forward<FirstItem>(firstItem)); m_rest.push_back(std::forward<OtherItems>(otherItems)...); }
 private:
 	template<size_t... Is>               iterator   begin_impl(tuple_index_seq<Is...>)       { return   begin<Is...>(); }
 	template<size_t... Is>         const_iterator   begin_impl(tuple_index_seq<Is...>) const { return   begin<Is...>(); }
@@ -117,7 +124,14 @@ public:
 	      reference operator[] (const size_t i)       { return m_values[i]; }
 	const_reference operator[] (const size_t i) const { return m_values[i]; }
 
-	size_t size() const { return m_values.size(); }
+	bool   empty()         const { return m_values.empty();  }
+	size_t size()          const { return m_values.size();   }
+	size_t max_size()      const { return m_values.size();   }
+	void   reserve()       const { m_values.reserve();       }
+	void   capacity()      const { m_values.capacity();      }
+	void   shrink_to_fit() const { m_values.shrink_to_fit(); }
+	
+	void clear() { m_values.clear(); }
 	
 		           iterator    begin()       { return   m_values.begin(); }
 	       const_iterator    begin() const { return   m_values.begin(); }
